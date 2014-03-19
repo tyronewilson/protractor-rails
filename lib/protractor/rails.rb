@@ -1,7 +1,9 @@
 require "protractor/rails/version"
+require 'rake'
 
 module Protractor
+  load 'Rakefile'
   module Rails
-    # Your code goes here...
   end
+
 end

@@ -3,7 +3,6 @@ require 'colorize'
 
 namespace :protractor do
   task :install => [:install_nodejs, :install_protractor, :install_webdriver] do
-
   end
 
   task :install_nodejs do
