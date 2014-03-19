@@ -10,9 +10,11 @@ Add this line to your application's Gemfile:
 
     gem 'protractor-rails'
 
-And then execute:
+And then execute to load dependencies on your machine:
 
-    $ bundle
+    $ rake protractor:install
+
+NB: This uses `sudo` so you will need to enter your password
 
 Or install it yourself as:
 
