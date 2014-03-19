@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tdubs241083@gmail.com"]
   spec.summary       = %q{Seemlessly run protractor for angularjs in your rails app.}
   spec.description   = %q{Protractor rails makes it a bit easier to integrate and run angularjs' protractor e2e test framework directly in your rails app.}
-  spec.homepage      = ""
+  spec.homepage      = "http://github.com/tyronewilson/protractor-rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

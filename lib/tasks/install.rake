@@ -1,6 +1,7 @@
 require 'colorize'
 
 namespace :protractor do
+  desc "Install dependencies for running protractor on your machine"
   task :install => [:install_nodejs, :install_protractor, :install_webdriver] do
   end
 
