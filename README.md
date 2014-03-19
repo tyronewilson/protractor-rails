@@ -1,6 +1,8 @@
 # Protractor::Rails
 
-TODO: Write a gem description
+This gem helps you to not go through the same pain that I did trying to figure out the best way to run angularjs e2e tests in a rails application.
+
+NB: This gem is in pre-release so don't use it yet.
 
 ## Installation
 
