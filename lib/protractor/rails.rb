@@ -1,7 +1,6 @@
 require "protractor/rails/version"
+require 'protractor/rails/railtie'
 
 module Protractor
-  module Rails
-    load 'lib/tasks/install.rake'
-  end
+  load 'lib/tasks/install.rake'
 end
