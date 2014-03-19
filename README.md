@@ -10,19 +10,22 @@ Add this line to your application's Gemfile:
 
     gem 'protractor-rails'
 
-And then execute to load dependencies on your machine:
+And then execute the following command to load dependencies on your machine:
 
     $ rake protractor:install
 
+You can test that everything has been set up correctly using the command below.
+This command will run protractor's example configuration and test file against the
+http://angular.org website. If everything starts up ok and runs till the end giving you
+a summary of test results then you are 'good to go'!
+
+    $ rake protractor:example
+
 NB: This uses `sudo` so you will need to enter your password
-
-Or install it yourself as:
-
-    $ gem install protractor-rails
 
 ## Usage
 
-TODO: Write usage instructions here
+
 
 ## Contributing
 
