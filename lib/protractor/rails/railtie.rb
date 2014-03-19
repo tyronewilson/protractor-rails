@@ -1,11 +1,8 @@
-require "protractor"
-require "rails"
-
 module Protractor
   module Rails
-    class Railtie < Rails::Railtie
+    class Railtie < ::Rails::Railtie
       rake_tasks do
-        load 'lib/tasks/installer.rake'
+        load File.expand_path('../../../tasks/install.rake', __FILE__)
       end
     end
   end
