@@ -83,7 +83,7 @@ There is a task to reset your database to remove items you have created during y
 
     $ rake protractor:cleanup
 
-This will reset your test database and load in fixtures affresh using the normal rake db:seed on your test database
+This will reset your test database and load in seeds in db/seeds.rb into your test database only.
 
 There is also a convenience function for running cleanup after you have run your tests ready for the next test run.
 
