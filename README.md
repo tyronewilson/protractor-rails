@@ -76,7 +76,7 @@ If I have a directory set up for protractor specs in `spec/javascripts/protracto
 
 ```
 
-Once you have setup your tests as above, running `rake protractor:spec will pic up new tests and run them for you`
+Once you have setup your tests as above, running `rake protractor:spec` will pick up new tests and run them for you`
 
 ### Setup and teardown
 
@@ -97,6 +97,8 @@ rspec tests. Keep your integration tests to a minimum and test as much as possib
 
 
 ## Contributing
+
+**Contributions, questions, comments, threats or suggestions are welcome.**
 
 1. Fork it ( http://github.com/<my-github-username>/protractor-rails/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
