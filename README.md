@@ -1,6 +1,6 @@
 # Protractor::Rails
 
-This gem helps you seemlessly setup, run and maintain a angularjs e2e test suite using protractor in a rails application.
+This gem helps you seamlessly setup, run and maintain a angularjs e2e test suite using protractor in a rails application.
 
 ## Installation
 
