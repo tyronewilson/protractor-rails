@@ -1,8 +1,6 @@
 # Protractor::Rails
 
-This gem helps you to not go through the same pain that I did trying to figure out the best way to run angularjs e2e tests in a rails application.
-
-NB: This gem is in pre-release so don't use it yet.
+This gem helps you seemlessly setup, run and maintain a angularjs e2e test suite using protractor in a rails application.
 
 ## Installation
 
@@ -25,6 +23,76 @@ NB: This uses `sudo` so you will need to enter your password
 
 ## Usage
 
+### Initialization
+
+You can initialize your app with protractor rails by running
+
+    $ rake protractor:init
+
+### Dummy test in local environment
+
+This will generate and template configuration and a dummy example test. Once you have run this you can test that
+everything has been set up correctly in your local environment by running the following command:
+
+    $ rake protractor:spec
+
+This will run a local rails test server, the webdriver selenium server and run protractor against the example_spec.js
+If everything starts up and runs cleanly you should see the test summary of 1 test 1 pass and 0 failures.
+
+### Running your tests
+
+When the `rake protractor:init` script is run it will create a file `spec/javascripts/protractor.conf.js`. This file is where you
+can configure the tests that should be run. [See Protractor Documentation for more details]:https://github.com/angular/protractor/blob/master/docs/getting-started.md.
+
+In this file you can provide patterns for matching your protractor specs. **NB: It is recommended that you use a subdirectory such as spec/javascripts/protractor_specs for easy matching and organization**
+
+**Example**
+
+If I have a directory set up for protractor specs in `spec/javascripts/protractor_specs/`, my configuration file would look something like the below
+
+```
+  // An example configuration file.
+  exports.config = {
+    // The address of a running selenium server.
+    seleniumAddress: 'http://localhost:4444/wd/hub',
+
+    // Capabilities to be passed to the webdriver instance.
+    capabilities: {
+        'browserName': 'chrome'
+    },
+
+    // Spec patterns are relative to the current working directly when protractor is called
+    specs: ['protractor_specs/**/*.js '],
+
+    baseUrl: 'http://localhost:4000',
+
+    // Options to be passed to Jasmine-node.
+    jasmineNodeOpts: {
+        showColors: true,
+        defaultTimeoutInterval: 30000
+    },
+};
+
+```
+
+Once you have setup your tests as above, running `rake protractor:spec will pic up new tests and run them for you`
+
+### Setup and teardown
+
+There is a task to reset your database to remove items you have created during your tests. This will also seed your database with any fixtures you might have prepared
+
+    $ rake protractor:cleanup
+
+This will reset your test database and load in fixtures affresh using the normal rake db:seed on your test database
+
+There is also a convenience function for running cleanup after you have run your tests ready for the next test run.
+
+    $ rake protractor:spec_and_cleanup
+
+## Notes about integration tests
+
+Integration tests are **MUCH** faster than testing things yourself but they are MUCH slower than running unit tests or
+rspec tests. Keep your integration tests to a minimum and test as much as possible with your normal rails test suite.
 
 
 ## Contributing

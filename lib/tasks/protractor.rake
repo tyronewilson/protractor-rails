@@ -77,7 +77,18 @@ namespace :protractor do
   end
 
   task :cleanup do
-    puts "rake db:test:prepare to cleanup for the next test session".green.bold
+    puts "rake db:test:prepare to cleanup for the next test session".green
     system 'rake db:test:prepare --trace'
+    puts "Seeding the test database....".green
+    system "rake db:test:seed --trace"
+  end
+end
+
+namespace :db do
+  namespace :test do
+    desc "seed only the test database (Task provided by protractor-rails)"
+    task :seed do
+      system "rake db:seed RAILS_ENV=test"
+    end
   end
 end
