@@ -39,8 +39,8 @@ namespace :protractor do
     end
     if !File.exist?('spec/javascripts/protractor.conf.js')
       puts "Creating template configuration file in spec/javascripts/protractor.conf.js".green
-      template_path =  File.expand_path('../../../spec', __FILE__)
-      template_conf = File.join(template_path, 'protractor_example.conf.js')
+      template_path =  File.expand_path('../../../spec/javascripts/templates', __FILE__)
+      template_conf = File.join(template_path, 'protractor.conf.js')
       template_spec = File.join(template_path, 'example_spec.js')
       system "cp #{template_conf} spec/javascripts/protractor.conf.js"
       puts "You will need to edit the spec/javascripts/protractor.conf.js file to suite your requirements."
