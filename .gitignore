@@ -1,1 +1,3 @@
 .ruby-gemset
+spec/javascripts/protractor.conf.js
+spec/javascripts/example_spec.js

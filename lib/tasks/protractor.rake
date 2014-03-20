@@ -15,6 +15,35 @@ namespace :protractor do
     end
   end
 
+  desc "Run specs from spec/javascripts/protractor.conf.js"
+  task :spec do
+    begin
+      webdriver_pid = fork do
+        Rake::Task['protractor:webdriver'].invoke
+      end
+      rails_server_pid = fork do
+        Rake::Task['protractor:rails'].invoke
+      end
+      puts "webdriver PID: #{webdriver_pid}".yellow.bold
+      puts "Rails Server PID: #{rails_server_pid}".yellow.bold
+      puts "Waiting for servers to finish starting up...."
+      sleep 6
+      system 'protractor spec/javascripts/protractor.conf.js'
+      Process.kill 'TERM', webdriver_pid
+      Process.kill 'TERM', rails_server_pid
+      Process.wait webdriver_pid
+      Process.wait rails_server_pid
+      puts "Waiting to shut down cleanly.........".yellow.bold
+      sleep 5
+    rescue Exception => e
+      puts e
+    ensure
+      Rake::Task["protractor:kill"].invoke
+    end
+  end
+
+  task :spec_and_cleanup => [:spec, :cleanup]
+
   task :kill do
     puts "killing running protractor processes".green.bold
     Rake::Task["protractor:kill_rails"].invoke
@@ -38,6 +67,7 @@ namespace :protractor do
   end
 
   task :rails do
+    puts "Starting Rails server on port 4000 pid file in tmp/pids/protractor_test_server.pid".green
     system 'rails s -e test --port=4000 -P tmp/pids/protractor_test_server.pid'
   end
 

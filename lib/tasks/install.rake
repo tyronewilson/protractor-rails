@@ -26,6 +26,30 @@ namespace :protractor do
     puts "Installing webdriver using protractor install manager...".green
     system "sudo webdriver-manager update"
   end
+
+  desc "Initialize protractor rails."
+  task :init do
+    if !File.directory?('spec/javascripts')
+      if !File.directory?('spec')
+        puts "create spec directory".yellow
+        `mkdir spec`
+      end
+      puts "Create spec/javascripts directory".yellow
+      `mkdir spec/javascripts`
+    end
+    if !File.exist?('spec/javascripts/protractor.conf.js')
+      puts "Creating template configuration file in spec/javascripts/protractor.conf.js".green
+      template_path =  File.expand_path('../../../spec', __FILE__)
+      template_conf = File.join(template_path, 'protractor_example.conf.js')
+      template_spec = File.join(template_path, 'example_spec.js')
+      system "cp #{template_conf} spec/javascripts/protractor.conf.js"
+      puts "You will need to edit the spec/javascripts/protractor.conf.js file to suite your requirements."
+      system "cp #{template_spec} spec/javascripts/example_spec.js"
+      puts "created example_spec.js in spec/javascripts. You can test it out by running rake protractor:spec"
+    else
+      puts "You already have a configuration file. If you would like to start over, remove spec/javascripts/protractor.conf.js and run rake protractor:init".red
+    end
+  end
 end
 
 def mac?
