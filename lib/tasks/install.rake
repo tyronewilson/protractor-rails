@@ -27,6 +27,14 @@ namespace :protractor do
     system "sudo webdriver-manager update"
   end
 
+  task :coffee_script_support do
+    puts "Installing RequireJS on your machine.....".green
+    system "sudo npm install -g requirejs"
+    puts "Installing coffee-script with npm".green
+    system "sudo npm install -g coffee-script"
+    puts "You have dependencies installed and ready to use. Read the coffee-script section at https://github.com/tyronewilson/protractor-rails for details on configuration"
+  end
+
   desc "Initialize protractor rails."
   task :init do
     if !File.directory?('spec/javascripts')
