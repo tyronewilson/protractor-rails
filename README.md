@@ -2,6 +2,10 @@
 
 This gem helps you seamlessly setup, run and maintain a angularjs e2e test suite using protractor in a rails application.
 
+## Dependencies
+
+Make sure you have Nodejs installed and that you do not need to use `sudo` to install npm packages
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -11,8 +15,6 @@ Add this line to your application's Gemfile:
 And then execute the following command to load dependencies on your machine:
 
     $ rake protractor:install
-
-    NB: This uses `sudo` so you will need to enter your password
 
 
 You can test that everything has been set up correctly using the command below.
