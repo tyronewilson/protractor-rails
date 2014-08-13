@@ -2,16 +2,18 @@ require 'colorize'
 
 namespace :protractor do
   desc "Install dependencies for running protractor on your machine"
-  task :install => [:install_nodejs, :install_protractor, :install_webdriver] do
+  task :install => [:check_nodejs_installed, :install_protractor, :install_webdriver] do
   end
 
-  task :install_nodejs do
-    if linux?
-      puts "Installing NodeJS via apt-get...".green
-      system "sudo apt-get -y install nodejs"
-    elsif mac?
-      puts "Installing NodeJS via homebrew...[THIS IS NOT TESTED YET I DON'T HAVE A MAC]".green
-      system "brew install nodejs"
+  task :check_nodejs_installed do
+    if linux? || mac?
+      puts "Check that Nodejs is installed"
+      result = `node -v`
+      if result
+        puts "Nodejs #{result[0..-2]} found [OK]".yellow
+      else
+        raise "Nodejs is not installed. Please installed Nodejs and run this script again".red
+      end
     elsif windows?
       puts "Thank you for choosing to use protractor-rails. Unfortunately Windows is not yet supported. Feel free to contribute.".red
     end
@@ -19,19 +21,19 @@ namespace :protractor do
 
   task :install_protractor do
     puts "Installing Protractor using npm installer".green
-    system "sudo npm install -g protractor"
+    system "npm install -g protractor"
   end
 
   task :install_webdriver do
     puts "Installing webdriver using protractor install manager...".green
-    system "sudo webdriver-manager update"
+    system "webdriver-manager update"
   end
 
   task :coffee_script_support do
     puts "Installing RequireJS on your machine.....".green
-    system "sudo npm install -g requirejs"
+    system "npm install -g requirejs"
     puts "Installing coffee-script with npm".green
-    system "sudo npm install -g coffee-script"
+    system "npm install -g coffee-script"
     puts "You have dependencies installed and ready to use. Read the coffee-script section at https://github.com/tyronewilson/protractor-rails for details on configuration"
   end
 
