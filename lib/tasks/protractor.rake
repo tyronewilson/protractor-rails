@@ -28,7 +28,7 @@ namespace :protractor do
       puts "Rails Server PID: #{rails_server_pid}".yellow.bold
       puts "Waiting for servers to finish starting up...."
       sleep 6
-      system 'protractor spec/javascripts/protractor.conf.js'
+      success = system 'protractor spec/javascripts/protractor.conf.js'
       Process.kill 'TERM', webdriver_pid
       Process.kill 'TERM', rails_server_pid
       Process.wait webdriver_pid
@@ -39,6 +39,7 @@ namespace :protractor do
       puts e
     ensure
       Rake::Task["protractor:kill"].invoke
+      exit success
     end
   end
 
