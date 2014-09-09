@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    protractor-rails (0.0.5)
+    protractor-rails (0.0.6)
       colorize
       railties
 
@@ -24,9 +24,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     builder (3.2.2)
-    colorize (0.7.0)
+    colorize (0.7.2)
     erubis (2.7.0)
-    i18n (0.6.9)
+    i18n (0.6.11)
     json (1.8.1)
     minitest (5.3.5)
     rack (1.5.2)
