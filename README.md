@@ -45,7 +45,7 @@ If everything starts up and runs cleanly you should see the test summary of 1 te
 ### Running your tests
 
 When the `rake protractor:init` script is run it will create a file `spec/javascripts/protractor.conf.js`. This file is where you
-can configure the tests that should be run. [See Protractor Documentation for more details]:https://github.com/angular/protractor/blob/master/docs/getting-started.md.
+can configure the tests that should be run. [See Protractor Documentation for more details] (https://github.com/angular/protractor/blob/master/docs/getting-started.md).
 
 In this file you can provide patterns for matching your protractor specs. **NB: It is recommended that you use a subdirectory such as spec/javascripts/protractor_specs for easy matching and organization**
 
@@ -102,7 +102,7 @@ rspec tests. Keep your integration tests to a minimum and test as much as possib
 
 **Contributions, questions, comments, threats or suggestions are welcome.**
 
-1. Fork it ( http://github.com/<my-github-username>/protractor-rails/fork )
+1. Fork it (http://github.com/my-github-username/protractor-rails/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
