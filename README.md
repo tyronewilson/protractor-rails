@@ -78,7 +78,9 @@ If I have a directory set up for protractor specs in `spec/javascripts/protracto
 
 ```
 
-Once you have setup your tests as above, running `rake protractor:spec` will pick up new tests and run them for you`
+Once you have setup your tests as above, running `rake protractor:spec` will pick up new tests and run them for you.
+
+You can specify the binding for the rails server as an environment variable: `rake protractor:spec rails_binding=hostname_or_ip`.
 
 ### Setup and teardown
 
