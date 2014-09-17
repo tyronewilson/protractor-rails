@@ -69,7 +69,11 @@ namespace :protractor do
 
   task :rails do
     puts "Starting Rails server on port 4000 pid file in tmp/pids/protractor_test_server.pid".green
-    system 'rails s -e test --port=4000 -P tmp/pids/protractor_test_server.pid'
+    rails_command = "rails s -e test -P tmp/pids/protractor_test_server.pid --port=4000"
+    if ENV['rails_binding'] != nil
+      rails_command << " --binding #{ ENV['rails_binding'] }"
+    end
+    system rails_command
   end
 
   task :webdriver do
