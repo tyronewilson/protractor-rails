@@ -1,4 +1,6 @@
-namespace :protractor do
+require 'optparse'
+
+namespace :protractor do |args|
   desc "starts protractor example test to see if you have your system set up correctly"
   task :example do
     begin
@@ -18,6 +20,15 @@ namespace :protractor do
   desc "Run specs from spec/javascripts/protractor.conf.js"
   task :spec do
     begin
+      options = ''
+      OptionParser.new(args) do |opts|
+        # Suite setup
+        suiteKey = '--suite'
+        opts.on("#{suiteKey} {suite}", 'Test suite name', String) do |suite|
+          options = options + "#{suiteKey} #{suite}"
+        end
+      end.parse!
+
       webdriver_pid = fork do
         Rake::Task['protractor:webdriver'].invoke
       end
@@ -28,7 +39,7 @@ namespace :protractor do
       puts "Rails Server PID: #{rails_server_pid}".yellow.bold
       puts "Waiting for servers to finish starting up...."
       sleep 6
-      success = system 'protractor spec/javascripts/protractor.conf.js'
+      success = system "protractor #{options} spec/javascripts/protractor.conf.js"
       Process.kill 'TERM', webdriver_pid
       Process.kill 'TERM', rails_server_pid
       Process.wait webdriver_pid
