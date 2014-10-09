@@ -80,6 +80,10 @@ If I have a directory set up for protractor specs in `spec/javascripts/protracto
 
 Once you have setup your tests as above, running `rake protractor:spec` will pick up new tests and run them for you`
 
+You can run specific test suites by passing in options to the rake task as per the below example.
+
+    $ rake protractor:spec --suite suite-name
+
 ### Setup and teardown
 
 There is a task to reset your database to remove items you have created during your tests. This will also seed your database with any fixtures you might have prepared
