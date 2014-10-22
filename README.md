@@ -82,9 +82,20 @@ Once you have setup your tests as above, running `rake protractor:spec` will pic
 
 You can specify the binding for the rails server as an environment variable: `rake protractor:spec rails_binding=hostname_or_ip`.
 
+### Suites
+
+If you want to organise your tests then you can use suites. Replace the specs: line in the above with the following
+
+    suites: {
+        login: 'protractor_specs/login/*.js',
+        user: 'protractor_specs/user/*.js'
+    },
+
 You can run specific test suites by passing in options to the rake task as per the below example.
 
-    $ rake protractor:spec --suite suite-name
+    $ rake protractor:spec -- --suite suite-name
+
+**NOTE You must have the -- first otherwise rake will think the arguments are for rake instead of the task**
 
 ### Setup and teardown
 
