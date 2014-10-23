@@ -22,6 +22,11 @@ namespace :protractor do |args|
     begin
       options = ''
       OptionParser.new(args) do |opts|
+        # Test specific spec files instead of a whole suite.
+        specsKey = '--specs'
+        opts.on("#{specsKey} {filename}", 'Test spec files', String) do |filename|
+          options = options + "#{specsKey} #{filename}"
+        end
         # Suite setup
         suiteKey = '--suite'
         opts.on("#{suiteKey} {suite}", 'Test suite name', String) do |suite|
