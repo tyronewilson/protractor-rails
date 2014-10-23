@@ -97,6 +97,10 @@ You can run specific test suites by passing in options to the rake task as per t
 
 **NOTE You must have the -- first otherwise rake will think the arguments are for rake instead of the task**
 
+### Run a specific spec file
+
+    $ rake protractor:spec -- --specs spec-filename
+
 ### Setup and teardown
 
 There is a task to reset your database to remove items you have created during your tests. This will also seed your database with any fixtures you might have prepared
