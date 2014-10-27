@@ -43,7 +43,7 @@ namespace :protractor do |args|
       puts "webdriver PID: #{webdriver_pid}".yellow.bold
       puts "Rails Server PID: #{rails_server_pid}".yellow.bold
       puts "Waiting for servers to finish starting up...."
-      sleep 6
+      sleep Protractor.configuration.startup_timeout
       success = system "protractor #{options} #{Protractor.configuration.config_path}"
       Process.kill 'TERM', webdriver_pid
       Process.kill 'TERM', rails_server_pid
