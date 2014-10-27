@@ -80,12 +80,12 @@ namespace :protractor do |args|
 
   task :kill_rails do
     puts "kill protractor rails tests server...".yellow
-    system "ps aux | grep -ie 'rails s -e test -P tmp/pids/protractor_test_server.pid --port=4000' | awk '{print $2}' | xargs kill -9"
+    system "ps aux | grep -ie 'rails s -e test -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}' | awk '{print $2}' | xargs kill -9"
   end
 
   task :rails do
-    puts "Starting Rails server on port 4000 pid file in tmp/pids/protractor_test_server.pid".green
-    rails_command = "rails s -e test -P tmp/pids/protractor_test_server.pid --port=4000"
+    puts "Starting Rails server on port #{Protractor.configuration.port} pid file in tmp/pids/protractor_test_server.pid".green
+    rails_command = "rails s -e test -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}"
     if ENV['rails_binding'] != nil
       rails_command << " --binding #{ ENV['rails_binding'] }"
     end

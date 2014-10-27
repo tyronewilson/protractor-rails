@@ -23,11 +23,12 @@ module Protractor
   end
 
   class Configuration
-    attr_accessor :config_path
+    attr_accessor :config_path, :port
 
     def initialize ( data=nil )
       @data = data
       @config_path = get( :config_path ) || 'spec/javascripts/protractor.conf.js'
+      @port        = get( :port ) || 4000
     end
 
     def get *keys
