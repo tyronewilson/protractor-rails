@@ -17,7 +17,7 @@ namespace :protractor do |args|
     end
   end
 
-  desc "Run specs from spec/javascripts/protractor.conf.js"
+  desc "Run specs from config file"
   task :spec do
     begin
       options = ''
@@ -44,7 +44,7 @@ namespace :protractor do |args|
       puts "Rails Server PID: #{rails_server_pid}".yellow.bold
       puts "Waiting for servers to finish starting up...."
       sleep 6
-      success = system "protractor #{options} spec/javascripts/protractor.conf.js"
+      success = system "protractor #{options} #{Protractor.configuration.config_path}"
       Process.kill 'TERM', webdriver_pid
       Process.kill 'TERM', rails_server_pid
       Process.wait webdriver_pid

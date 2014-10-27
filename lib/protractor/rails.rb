@@ -1,5 +1,6 @@
-require "protractor/rails/version"
+require 'protractor/rails/version'
 require 'protractor/rails/railtie'
+require 'protractor/rails/configuration'
 
 module Protractor
   module Rails
