@@ -2,3 +2,4 @@
 spec/javascripts/protractor.conf.js
 spec/javascripts/example_spec.js
 pkg
+.DS_Store

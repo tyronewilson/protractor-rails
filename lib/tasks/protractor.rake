@@ -17,7 +17,7 @@ namespace :protractor do |args|
     end
   end
 
-  desc "Run specs from spec/javascripts/protractor.conf.js"
+  desc "Run specs from config file"
   task :spec do
     begin
       options = ''
@@ -43,8 +43,8 @@ namespace :protractor do |args|
       puts "webdriver PID: #{webdriver_pid}".yellow.bold
       puts "Rails Server PID: #{rails_server_pid}".yellow.bold
       puts "Waiting for servers to finish starting up...."
-      sleep 6
-      success = system "protractor #{options} spec/javascripts/protractor.conf.js"
+      sleep Protractor.configuration.startup_timeout
+      success = system "protractor #{options} #{Protractor.configuration.config_path}"
       Process.kill 'TERM', webdriver_pid
       Process.kill 'TERM', rails_server_pid
       Process.wait webdriver_pid
@@ -80,12 +80,12 @@ namespace :protractor do |args|
 
   task :kill_rails do
     puts "kill protractor rails tests server...".yellow
-    system "ps aux | grep -ie 'rails s -e test -P tmp/pids/protractor_test_server.pid --port=4000' | awk '{print $2}' | xargs kill -9"
+    system "ps aux | grep -ie 'rails s -e test -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}' | awk '{print $2}' | xargs kill -9"
   end
 
   task :rails do
-    puts "Starting Rails server on port 4000 pid file in tmp/pids/protractor_test_server.pid".green
-    rails_command = "rails s -e test -P tmp/pids/protractor_test_server.pid --port=4000"
+    puts "Starting Rails server on port #{Protractor.configuration.port} pid file in tmp/pids/protractor_test_server.pid".green
+    rails_command = "rails s -e test -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}"
     if ENV['rails_binding'] != nil
       rails_command << " --binding #{ ENV['rails_binding'] }"
     end
