@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    protractor-rails (0.0.9)
+    protractor-rails (0.0.10)
       colorize
       railties
 
