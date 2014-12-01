@@ -39,25 +39,26 @@ namespace :protractor do
 
   desc "Initialize protractor rails."
   task :init do
-    if !File.directory?('spec/javascripts')
-      if !File.directory?('spec')
-        puts "create spec directory".yellow
-        `mkdir spec`
-      end
-      puts "Create spec/javascripts directory".yellow
-      `mkdir spec/javascripts`
+    conf_path = Protractor.configuration.config_path
+    conf_file = File.join(conf_path, Protractor.configuration.config_file)
+    spec_path = Protractor.configuration.spec_path
+
+    if !File.directory?(spec_path)
+      puts "You have chosen to put your protractor-rails specs file in #{spec_path} but the directory doesn't exist. Please create it and then rerun this command".red
+      next
     end
-    if !File.exist? Protractor.configuration.config_path
-      puts "Creating template configuration file in #{Protractor.configuration.config_path}".green
-      template_path = File.expand_path("../../../#{Protractor.configuration.config_path}", __FILE__)
+    if File.exist? conf_file
+      puts "You already have a configuration file. If you would like to start over, remove #{Protractor.configuration.config_path} and run rake protractor:init".red
+      next
+    else
+      puts "Creating template configuration file in #{conf_path}".green
+      template_path = File.expand_path("../../../spec/javascripts/templates", __FILE__)
       template_conf = File.join(template_path, 'protractor.conf.js')
       template_spec = File.join(template_path, 'example_spec.js')
-      system "cp #{template_conf} #{Protractor.configuration.config_path}"
-      puts "You will need to edit the #{Protractor.configuration.config_path} file to suite your requirements."
-      system "cp #{template_spec} spec/javascripts/example_spec.js"
-      puts "created example_spec.js in spec/javascripts. You can test it out by running rake protractor:spec"
-    else
-      puts "You already have a configuration file. If you would like to start over, remove #{Protractor.configuration.config_path} and run rake protractor:init".red
+      system "cp #{template_conf} #{conf_file}"
+      puts "You will need to edit the #{conf_file} file to suite your requirements."
+      system "cp #{template_spec} #{File.join(Protractor.configuration.spec_path, 'example_spec.js')}"
+      puts "created example_spec.js in #{spec_path}. You can test it out by running rake protractor:example"
     end
   end
 end

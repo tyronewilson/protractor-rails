@@ -24,13 +24,17 @@ module Protractor
 
   class Configuration
     attr_accessor :config_path,
+                  :config_file,
                   :startup_timeout,
+                  :spec_path,
                   :port
 
     def initialize ( data=nil )
       @data = data
-      @config_path     = get( :config_path ) || 'spec/javascripts/protractor.conf.js'
-      @startup_timeout = get( :startup_timeout ) || 6
+      @config_path     = get( :config_path ) || 'spec/javascripts'
+      @config_file     = get( :config_file ) || 'protractor.conf.js'
+      @spec_path       = get( :spec_path ) || 'spec/javascripts'
+      @startup_timeout = get( :startup_timeout ) || 8
       @port            = get( :port ) || 4000
     end
 
