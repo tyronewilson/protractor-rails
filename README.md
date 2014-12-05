@@ -113,11 +113,20 @@ There is also a convenience function for running cleanup after you have run your
 
     $ rake protractor:spec_and_cleanup
 
+### Task Options
+
+#### rake protractor:spec
+
+You can control verbosity of logging with the following ENV flags:
+
+*   `rake protractor:spec nolog=y # all quiet`
+*   `rake protractor:spec nolog_selenium=y # no selenium (just drivers)`
+*   `rake protractor:spec nolog_rails=y # no rails`
+
 ## Notes about integration tests
 
 Integration tests are **MUCH** faster than testing things yourself but they are MUCH slower than running unit tests or
 rspec tests. Keep your integration tests to a minimum and test as much as possible with your normal rails test suite.
-
 
 ## Contributing
 
