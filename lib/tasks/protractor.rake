@@ -77,17 +77,17 @@ namespace :protractor do |args|
 
   task :kill_selenium_processes do
     write_log "kill left over selenium processes...".yellow
-    system "ps aux | grep -ie 'protractor\/selenium' | awk '{print $2}' | xargs kill -9"
+    system "ps aux | grep -ie 'protractor\/selenium' | grep -v grep | awk '{print $2}' | xargs kill -9"
   end
 
   task :kill_webdriver do
     write_log "kill webdriver server...".yellow
-    system "ps aux | grep -ie '\-Dwebdriver' | awk '{print $2}' | xargs kill -9"
+    system "ps aux | grep -ie '\-Dwebdriver' | grep -v grep | awk '{print $2}' | xargs kill -9"
   end
 
   task :kill_rails do
     write_log "kill protractor rails tests server...".yellow
-    system "ps aux | grep -ie 'rails s -e test -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}' | awk '{print $2}' | xargs kill -9"
+    system "ps aux | grep -ie 'rails s -e test -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}' | grep -v grep | awk '{print $2}' | xargs kill -9"
   end
 
   task :rails do
