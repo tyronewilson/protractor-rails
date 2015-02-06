@@ -63,7 +63,7 @@ namespace :protractor do |args|
       puts e
     ensure
       Rake::Task["protractor:kill"].invoke
-      exit unless success
+      exit 1 unless success
     end
   end
 
