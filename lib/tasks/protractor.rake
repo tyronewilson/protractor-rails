@@ -88,7 +88,7 @@ namespace :protractor do |args|
 
   task :kill_rails do
     write_log "kill protractor rails tests server...".yellow
-    system "ps aux | grep -ie 'rails s -e test -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}' | grep -v grep | awk '{print $2}' | xargs kill -9"
+    system "kill `cat tmp/pids/protractor_test_server.pid`"
   end
 
   task :rails do
