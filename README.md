@@ -64,6 +64,14 @@ If I have a directory set up for protractor specs in `spec/javascripts/protracto
         'browserName': 'chrome'
     },
 
+    // If you would like to test against multiple browsers, use the multiCapabilities
+    // configuration option instead.
+    multiCapabilities: [{
+        'browserName': 'firefox'
+    }, {
+        'browserName': 'chrome'
+    }],
+
     // Spec patterns are relative to the current working directly when protractor is called
     specs: ['protractor_specs/**/*.js '],
 
