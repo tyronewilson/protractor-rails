@@ -82,6 +82,13 @@ If I have a directory set up for protractor specs in `spec/javascripts/protracto
         showColors: true,
         defaultTimeoutInterval: 30000
     },
+
+    // Specify a version of Jasmine you wish to use. Default version is v1.3
+    // Jasmine v2 has many more built-in functions to help with testing,
+    // such as beforeAll and afterAll.
+    // Jasmine v2 documentation can be found here:
+    // http://jasmine.github.io/2.0/introduction.html
+    framework: 'jasmine2'
 };
 
 ```
