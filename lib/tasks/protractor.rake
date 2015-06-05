@@ -92,7 +92,7 @@ namespace :protractor do |args|
   end
 
   task :rails do
-    env = ENV['PROTRACTOR_SERVER_ENV'] ||= 'test'
+    env = ENV['PROTRACTOR_SERVER_ENV'] ||= 'e2e_test'
     write_log "Starting Rails server on port #{Protractor.configuration.port} environement #{env} pid file in tmp/pids/protractor_test_server.pid".green
     rails_command = "rails s -e #{env} -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}"
     if ENV['rails_binding'] != nil
@@ -118,7 +118,7 @@ namespace :db do
   namespace :test do
     desc "seed only the test database (Task provided by protractor-rails)"
     task :seed do
-      system "rake db:seed RAILS_ENV=test"
+      system "rake db:seed_fu RAILS_ENV=e2e_test"
     end
   end
 end
