@@ -67,6 +67,28 @@ namespace :protractor do |args|
     end
   end
 
+  desc "Run specs from config file"
+  task :server do
+    begin
+
+      webdriver_pid = fork do
+        [$stdout,$stderr].each { |fh| fh.reopen File.open("/dev/null","w") } if ENV['nolog'].present? || ENV['nolog_selenium'].present?
+        Rake::Task['protractor:webdriver'].invoke
+      end
+      rails_server_pid = fork do
+        [$stdout,$stderr].each { |fh| fh.reopen File.open("/dev/null","w") } if ENV['nolog'].present? || ENV['nolog_rails'].present?
+        Rake::Task['protractor:rails'].invoke
+      end
+      write_log "webdriver PID: #{webdriver_pid}"
+      write_log "Rails Server PID: #{rails_server_pid}".yellow.bold
+    rescue Exception => e
+      puts e
+    ensure
+      Rake::Task["protractor:kill"].invoke
+      exit 1 unless success
+    end
+  end
+
   task :spec_and_cleanup => [:spec, :cleanup]
 
   task :kill do
@@ -103,7 +125,7 @@ namespace :protractor do |args|
 
   task :webdriver do
     write_log "Starting selenium server".green
-    system "webdriver-manager start"
+    system "webdriver-manager start --standalone"
   end
 
   task :cleanup do
