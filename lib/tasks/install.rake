@@ -26,7 +26,7 @@ namespace :protractor do
 
   task :install_webdriver do
     puts "Installing webdriver using protractor install manager...".green
-    system "webdriver-manager update"
+    system "webdriver-manager update --standalone"
   end
 
   task :coffee_script_support do
