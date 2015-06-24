@@ -103,7 +103,7 @@ namespace :protractor do |args|
 
   task :webdriver do
     write_log "Starting selenium server".green
-    system "webdriver-manager start"
+    system "webdriver-manager start --standalone"
   end
 
   task :cleanup do
