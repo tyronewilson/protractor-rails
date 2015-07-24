@@ -39,6 +39,9 @@ namespace :protractor do |args|
         end
       end.parse!
 
+      options += "--specs #{ENV['SPECS']}" if ENV['SPECS'].present?
+      options += "--suite #{ENV['SUITE']}" if ENV['SUITE'].present?
+
       webdriver_pid = fork do
         [$stdout,$stderr].each { |fh| fh.reopen File.open("/dev/null","w") } if ENV['nolog'].present? || ENV['nolog_selenium'].present?
         Rake::Task['protractor:webdriver'].invoke
