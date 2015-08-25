@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    protractor-rails (0.0.16)
+    protractor-rails (0.0.17)
       colorize
       railties
 
@@ -31,19 +31,19 @@ GEM
     colorize (0.7.5)
     erubis (2.7.0)
     i18n (0.7.0)
-    json (1.8.2)
-    loofah (2.0.2)
+    json (1.8.3)
+    loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    rack (1.6.1)
+    rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.6)
+    rails-dom-testing (1.0.7)
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
@@ -69,4 +69,4 @@ DEPENDENCIES
   rake
 
 BUNDLED WITH
-   1.10.4
+   1.10.6
