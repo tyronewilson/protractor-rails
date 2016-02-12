@@ -27,6 +27,7 @@ module Protractor
                   :config_file,
                   :startup_timeout,
                   :spec_path,
+                  :server,
                   :port
 
     def initialize ( data=nil )
@@ -35,6 +36,7 @@ module Protractor
       @config_file     = get( :config_file ) || 'protractor.conf.js'
       @spec_path       = get( :spec_path ) || 'spec/javascripts'
       @startup_timeout = get( :startup_timeout ) || 8
+      @server          = get( :server ) || 'webrick'
       @port            = get( :port ) || 4000
     end
 

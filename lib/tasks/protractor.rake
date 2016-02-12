@@ -96,8 +96,9 @@ namespace :protractor do |args|
 
   task :rails do
     env = ENV['PROTRACTOR_SERVER_ENV'] ||= 'test'
-    write_log "Starting Rails server on port #{Protractor.configuration.port} environement #{env} pid file in tmp/pids/protractor_test_server.pid".green
-    rails_command = "rails s -e #{env} -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}"
+    server = Protractor.configuration.server
+    write_log "Starting Rails server #{server} on port #{Protractor.configuration.port} environement #{env} pid file in tmp/pids/protractor_test_server.pid".green
+    rails_command = "rails s #{server} -e #{env} -P tmp/pids/protractor_test_server.pid --port=#{Protractor.configuration.port}"
     if ENV['rails_binding'] != nil
       rails_command << " --binding #{ ENV['rails_binding'] }"
     end
