@@ -112,6 +112,11 @@ You can run specific test suites by passing in options to the rake task as per t
 
 **NOTE You must have the -- first otherwise rake will think the arguments are for rake instead of the task**
 
+### Run in debug mode
+
+    $ DEBUG=true rake protractor:spec
+
+
 ### Run a specific spec file
 
     $ rake protractor:spec -- --specs spec-filename

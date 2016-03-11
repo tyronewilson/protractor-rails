@@ -18,7 +18,7 @@ namespace :protractor do |args|
   end
 
   def write_log(message)
-    return if ENV['nolog'].present?
+    return unless ENV['nolog'].blank?
     puts message
   end
 
@@ -37,10 +37,15 @@ namespace :protractor do |args|
         opts.on("#{suiteKey} {suite}", 'Test suite name', String) do |suite|
           options = options + "#{suiteKey} #{suite}"
         end
+
+        opts.on("--debug") do
+          options = options + "debug"
+        end
       end.parse!
 
       options += "--specs #{ENV['SPECS']}" if ENV['SPECS'].present?
       options += "--suite #{ENV['SUITE']}" if ENV['SUITE'].present?
+      options += "debug" if ENV['DEBUG'].present?
 
       webdriver_pid = fork do
         [$stdout,$stderr].each { |fh| fh.reopen File.open("/dev/null","w") } if ENV['nolog'].present? || ENV['nolog_selenium'].present?
@@ -54,7 +59,9 @@ namespace :protractor do |args|
       write_log "Rails Server PID: #{rails_server_pid}".yellow.bold
       write_log "Waiting for servers to finish starting up...."
       sleep Protractor.configuration.startup_timeout
-      success = system "protractor #{options} #{Protractor.configuration.config_path}/#{Protractor.configuration.config_file}"
+      cmd = "protractor #{options} #{Protractor.configuration.config_path}/#{Protractor.configuration.config_file}"
+      write_log cmd
+      success = system cmd
       write_log "Protractor has failed to run test with options '#{options}'".red.bold unless success
       Process.kill 'TERM', webdriver_pid
       Process.kill 'TERM', rails_server_pid
