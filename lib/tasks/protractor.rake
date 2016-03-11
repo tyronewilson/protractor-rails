@@ -38,7 +38,7 @@ namespace :protractor do |args|
           options = options + "#{suiteKey} #{suite}"
         end
 
-        opts.on("--debug") do
+        opts.on("--debug", String) do
           options = options + "debug"
         end
       end.parse!
