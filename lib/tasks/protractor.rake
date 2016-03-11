@@ -18,7 +18,7 @@ namespace :protractor do |args|
   end
 
   def write_log(message)
-    return unless ENV['nolog'].blank?
+    return if ENV['nolog'].present?
     puts message
   end
 
